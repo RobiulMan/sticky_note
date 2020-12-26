@@ -1,42 +1,68 @@
+body{
+    background: url(../image/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif !important;
+}
+.hearder{
+    margin-bottom: 180px;
+}
+.headtext{
+    color: #ffffff;
+    text-align: center;
+    
+}
+.headtext h1{
+    font-weight: 800;
+    color: rgb(255, 174, 0);
+}
+/* .headtext p{
+    font-size: 18px;
+    font-weight: 300;
+} */
+.logo > img{
+    width: 60%;
+}
 .inp-own{
     border-radius: 15rem;
     border: none;
-    box-shadow: 0px 0px 6px 0px #d2cfcf;
+    box-shadow: 4px 0px 10px 1px rgb(22, 22, 22,.2);
 }
 
-.search{
-    box-sizing: border-box;
-}
+
 .search-icon {
     cursor: pointer;
-    position: relative;
     background: #ffffff;
-    top: 0;
-    bottom: 0;
-    /* transform: translate(698px, 49px); */
+    transform: translate(-34px, 0px);
     width: 35px;
     height: 35px;
     border-radius: 50%;
     box-sizing: border-box;
-    /* background-color: #f4f4f4; */
-    box-shadow: 0px 0px 6px 0px #d2cfcf;
+    box-shadow: 0px 0px 5px 0px #0000005e;
 }
 .icon{
-    color: rgb(22, 22, 22);
-    box-sizing: border-box;
-    text-align: center;
+    color: #00000042;
+}
+.icon-btn > span{
+    font-size: 27px;
+    margin-left: 10px;
 }
 
 /* notepad area */
-.modal-root{
-    height: 50%;
-    
+
+.modal-content{
+    border: none;
+    height: 312px;
 }
 .modals{
-    box-shadow: 0px 0px 6px 0px #d2cfcf;
+    box-shadow: 4px 0px 10px 1px rgb(22, 22, 22,.2);
+    height: 50%;
 }
 .modal-head-text{
     border: none;
+    font-size: 18px;
     
 }
 
@@ -46,4 +72,26 @@
     border-color: none;
     outline: none;
     box-shadow: none;
+}
+.dates{
+    
+    background: rgb(54, 54, 54);
+    color: #ffffff;
+    border-radius: 5px;
+    height: 25px;
+}
+.dates p{
+    font-size: 14px;
+}
+textarea{
+    resize: none;
+    height: 120px;
+
+}
+.btns a{
+    color: #00000042;
+}
+.btns a:hover{
+    color: #8f8e8e;
+    
 }
