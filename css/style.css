@@ -55,10 +55,12 @@ body{
 .modal-content{
     border: none;
     height: 312px;
+    
 }
 .modals{
     box-shadow: 4px 0px 10px 1px rgb(22, 22, 22,.2);
     height: 50%;
+    box-sizing: border-box;
 }
 .modal-head-text{
     border: none;
@@ -74,14 +76,19 @@ body{
     box-shadow: none;
 }
 .dates{
-    
     background: rgb(54, 54, 54);
     color: #ffffff;
     border-radius: 5px;
     height: 25px;
 }
-.dates p{
+.dates small{
     font-size: 14px;
+    font-weight: 300;
+}
+.fix-size{
+    height: 120px;
+    overflow: auto;
+    line-height: 28px;
 }
 textarea{
     resize: none;

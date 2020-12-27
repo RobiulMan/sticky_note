@@ -1,10 +1,10 @@
-const search = document.querySelector('#searching')
-const noteArea = document.querySelector('#note-area')
-const noteTitle = document.querySelector('#title')
-const dateSetter = document.querySelector('#set-dates')
-const noteBodyText = document.querySelector('#body-text')
-const addBtn = document.querySelector('#add-btn')
-const colorBtn = document.querySelector('#color-btn')
+let search = document.querySelector('#searching')
+let noteArea = document.querySelector('#note-area')
+let noteTitle = document.querySelector('#title')
+let dateSetter = document.querySelector('#set-dates')
+let noteBodyText = document.querySelector('#body-text')
+let addBtn = document.querySelector('#add-btn')
+let colorBtn = document.querySelector('#color-btn')
 //l L
 
 loadEventListners()
@@ -17,8 +17,9 @@ function loadEventListners() {
 //add sticky note content
 function addContent(e) {
     //check input filed
-    if(noteTitle.value === '' || noteBodyText.value === '') {
+    if(noteTitle.value === '' && noteBodyText.value === '') {
         alert('add something')
+        return false
     }
 
     //creat note element
@@ -26,9 +27,9 @@ function addContent(e) {
     const seconderyNoteElement = elementMaker('div', 'modals')
     const noteContinerElement = elementMaker('div', 'modal-content')
     const noteHeadElement = elementMaker('div', 'modal-header')
-    const noteHeadTextElemnt = elementMaker('p', 'lead')
+    const noteHeadTextElemnt = elementMaker('h5', '')
     const notsBodyElement = elementMaker('div', 'modal-body')
-    const noteBodyTextElement = elementMaker('p', 'lead')
+    const noteBodyTextElement = elementMaker('p', 'lead fix-size')
 
     noteBodyTextElement.appendChild(document.createTextNode(noteBodyText.value))
     noteHeadTextElemnt.appendChild(document.createTextNode(noteTitle.value))
@@ -41,10 +42,12 @@ function addContent(e) {
     rootNoteElement.appendChild(seconderyNoteElement)
     noteArea.appendChild(rootNoteElement)
     
+    noteBodyText.value = ''
+    noteTitle.value = ''
+   
+    
 
     e.preventDefault()
-
-    
 }
 
 //this function makes element with class return the element
@@ -56,6 +59,25 @@ function elementMaker(tagName, nameOfClass) {
 }
 
 
+//date function 
+function dates() {
+    let monthName = ['January', 
+    'February',
+    'March',
+    'April',
+    'May', 
+    'June', 
+    'July', 
+    'August', 
+    'September',
+    'October',
+    'November',
+    'December']
+    let datemakers = new Date()
+    dateSetter.innerHTML = `${datemakers.getDate()} ${monthName[datemakers.getMonth()]} ${datemakers.getFullYear()}`
+}
+dates()
+console.log(dateSetter)
 // <div class="modal-root col-md-6 col-lg-4">
 // <div class="modals">
 //   <div class="modal-content">
