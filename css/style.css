@@ -79,7 +79,7 @@ body{
     background: rgb(54, 54, 54);
     color: #ffffff;
     border-radius: 5px;
-    height: 25px;
+    margin-left: 25px;
 }
 .dates small{
     font-size: 14px;
@@ -97,8 +97,47 @@ textarea{
 }
 .btns a{
     color: #00000042;
+    position: relative;
 }
 .btns a:hover{
     color: #8f8e8e;
     
+}
+.color-plate {
+    position: absolute;
+    transform: translate(0px,68px);
+    background-color: #ffffff;
+    border-radius: 100px;
+    height: 50px;
+    top: 50%;
+    opacity: 0;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0, .2);
+}
+.plate{
+    width: 30px;
+    height: 30px;
+    margin: 0 4px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.blue{
+    background-color: rgba(0, 0, 255, 0.5);
+}
+.yellow{
+    background-color: rgba(255, 255, 0, 0.5);
+}
+.red{
+    background-color: rgba(255, 0, 0, 0.5);
+}
+.purple{
+    background-color: rgba(128, 0, 128, 0.5);
+}
+.white{
+    background-color: white;
+}
+
+.active-color{
+    opacity: 1;
 }
