@@ -70,7 +70,7 @@ body{
 
 .form-control:focus {
     color: none;
-    background-color:none;
+    background-color:none !important;
     border-color: none;
     outline: none;
     box-shadow: none;
@@ -112,7 +112,7 @@ textarea{
     top: 50%;
     opacity: 0;
     padding: 10px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0, .2);
+    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0, .2)
 }
 .plate{
     width: 30px;
@@ -123,21 +123,28 @@ textarea{
 }
 
 .blue{
-    background-color: rgba(0, 0, 255, 0.5);
+    background-color: #BCE0FF;
 }
 .yellow{
-    background-color: rgba(255, 255, 0, 0.5);
+    background-color: #FFEDA5 ;
 }
 .red{
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: #FFB2B2;
 }
 .purple{
-    background-color: rgba(128, 0, 128, 0.5);
+    background-color: #B0A4E6;
 }
 .white{
-    background-color: white;
+    background-color: #ffffff;
+    /* border: 0.1px solid #b7b5b5; */
 }
 
 .active-color{
     opacity: 1;
+}
+.selector{
+    border: 2px dashed #777;
+}
+.un-selector{
+    border: none
 }
