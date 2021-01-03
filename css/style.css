@@ -98,6 +98,7 @@ textarea{
 .btns a{
     color: #00000042;
     position: relative;
+    cursor: pointer;
 }
 .btns a:hover{
     color: #8f8e8e;

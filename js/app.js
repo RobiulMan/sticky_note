@@ -5,6 +5,7 @@ let dateSetter = document.querySelector('#set-dates')
 let noteBodyText = document.querySelector('#body-text')
 let addBtn = document.querySelector('#add-btn')
 
+
 /**
  * future i will implamentrion the color area
  */
@@ -20,10 +21,19 @@ loadEventListners()
 function loadEventListners() {
     //date function 
     dates()
-
-    //add content function
+    
+    //add content event
     addBtn.addEventListener('click', addContent)
 
+    //delete event 
+    noteArea.addEventListener('click', deleteAction)
+
+    //edit event 
+    noteArea.addEventListener('click', editAction)
+
+    //rewrightin event 
+    // noteArea.addEventListener('click', rewrightAction)
+    
 /**
 * future i will implamentrion the color area
 */
@@ -60,18 +70,19 @@ function addContent(e) {
     //button area
     const editeBtnElement = elementMaker('div', 'btns')
     const editeBtnContents = elementMaker('div', 'd-flex justify-content-center')
-    const editBtn = elementMaker('a', 'icon-btn')
+    const editBtn = elementMaker('a', 'icon-btn editBtn')
     const editBtnIcon =  elementMaker('span', 'material-icons')
-    const deleteBtn = elementMaker('a', 'icon-btn')
+    const deleteBtn = elementMaker('a', 'icon-btn removeBtn')
     const deleteBtnIcon = elementMaker('span', 'material-icons')
 
     
 
-    editBtn.setAttribute('herf', '#')
+    
     editBtnIcon.appendChild(document.createTextNode('edit'))
     editBtn.appendChild(editBtnIcon)
     editeBtnContents.appendChild(editBtn)
     editeBtnElement.appendChild(editeBtnContents)
+
     
     deleteBtnIcon.appendChild(document.createTextNode('delete_outline'))
     deleteBtn.appendChild(deleteBtnIcon)
@@ -100,6 +111,53 @@ function addContent(e) {
     
 
     e.preventDefault()
+}
+
+
+//delete button event
+function deleteAction(e) {
+    let pareantElement = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+    
+    if(e.target.parentNode.classList.contains('removeBtn')) {
+        pareantElement.remove('modal-root')
+    }
+    
+    
+}
+
+//edit content action
+function editAction(e) {
+    let parentElement, headerText, bodyText, headTextElemnt, bodyTextElemnt, button;
+
+    if(e.target.parentNode.classList.contains('editBtn')) {
+            parentElement = e.target.parentNode.parentNode.parentNode.parentNode
+            headerText = parentElement.childNodes[0].childNodes[0].innerText
+            bodyText = parentElement.childNodes[2].childNodes[0].innerText
+            headTextElemnt = e.target.parentNode.parentNode.parentNode.parentNode.childNodes[0].firstChild
+            bodyTextElemnt = e.target.parentNode.parentNode.parentNode.parentNode.childNodes[2].firstChild
+            button = e.target.parentNode.parentNode.parentNode.parentNode.lastChild.firstChild.firstChild
+            console.log(parentElement)
+
+            const addItem  = elementMaker('a', 'icon-btn')
+            addItem.innerHTML = `<span class="material-icons" > add_task </span>`
+
+            
+        //creat
+        const inputItem = elementMaker('input', 'form-control modal-head-text')
+        inputItem.value = headerText
+        const textareaItem = elementMaker('textarea', 'form-control modal-head-text')
+        textareaItem.value = bodyText
+        
+        button.parentNode.replaceChild(addItem, button)
+        headTextElemnt.parentNode.replaceChild(inputItem ,headTextElemnt)
+        bodyTextElemnt.parentNode.replaceChild(textareaItem , bodyTextElemnt)
+
+        button.addEventListener('click', function(e) {
+            
+        })
+        
+        
+    }
 }
 
 
