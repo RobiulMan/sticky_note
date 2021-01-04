@@ -5,6 +5,7 @@ body{
     background-position: center center;
     height: 100vh;
     font-family: 'Montserrat', sans-serif !important;
+    background-color:rgb(255, 174, 0);
 }
 .hearder{
     margin-bottom: 180px;

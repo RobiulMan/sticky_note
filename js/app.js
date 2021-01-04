@@ -31,8 +31,8 @@ function loadEventListners() {
     //edit event 
     noteArea.addEventListener('click', editAction)
 
-    //rewrightin event 
-    // noteArea.addEventListener('click', rewrightAction)
+    // rewrightin event 
+    noteArea.addEventListener('click', reWriteAction)
     
 /**
 * future i will implamentrion the color area
@@ -57,7 +57,7 @@ function addContent(e) {
     }
 
     //creat note element
-    const rootNoteElement = elementMaker('div', 'modal-root col-md-6 col-lg-4')
+    const rootNoteElement = elementMaker('div', 'modal-root col-md-6 col-lg-4 mb-3')
     const seconderyNoteElement = elementMaker('div', 'modals')
     const noteContinerElement = elementMaker('div', 'modal-content')
     const noteHeadElement = elementMaker('div', 'modal-header')
@@ -127,7 +127,7 @@ function deleteAction(e) {
 
 //edit content action
 function editAction(e) {
-    let parentElement, headerText, bodyText, headTextElemnt, bodyTextElemnt, button;
+    let parentElement, headerText, bodyText, headTextElemnt, bodyTextElemnt, editButton;
 
     if(e.target.parentNode.classList.contains('editBtn')) {
             parentElement = e.target.parentNode.parentNode.parentNode.parentNode
@@ -135,29 +135,56 @@ function editAction(e) {
             bodyText = parentElement.childNodes[2].childNodes[0].innerText
             headTextElemnt = e.target.parentNode.parentNode.parentNode.parentNode.childNodes[0].firstChild
             bodyTextElemnt = e.target.parentNode.parentNode.parentNode.parentNode.childNodes[2].firstChild
-            button = e.target.parentNode.parentNode.parentNode.parentNode.lastChild.firstChild.firstChild
-            console.log(parentElement)
+            editButton = e.target.parentNode.parentNode.parentNode.parentNode.lastChild.firstChild.firstChild
+            // console.log(editButton.classList.contains('editBtn'))
 
-            const addItem  = elementMaker('a', 'icon-btn')
-            addItem.innerHTML = `<span class="material-icons" > add_task </span>`
+        const reWriteItem  = elementMaker('a', 'icon-btn rewrite')
+        reWriteItem.innerHTML = `<span class="material-icons" > add_task </span>`
 
             
         //creat
         const inputItem = elementMaker('input', 'form-control modal-head-text')
         inputItem.value = headerText
         const textareaItem = elementMaker('textarea', 'form-control modal-head-text')
+        textareaItem.setAttribute('gramm_editor', 'false')
         textareaItem.value = bodyText
         
-        button.parentNode.replaceChild(addItem, button)
+        editButton.parentNode.replaceChild(reWriteItem, editButton)
         headTextElemnt.parentNode.replaceChild(inputItem ,headTextElemnt)
         bodyTextElemnt.parentNode.replaceChild(textareaItem , bodyTextElemnt)
-
-        button.addEventListener('click', function(e) {
-            
-        })
-        
         
     }
+}
+
+function reWriteAction(e) {
+    let parentElement, headerText, bodyText, headTextElemnt, bodyTextElemnt, reWriteBtn;
+
+    if(e.target.parentNode.classList.contains('rewrite')) {
+        
+        parentElement = e.target.parentNode.parentNode.parentNode.parentNode
+        console.log(parentElement)
+        headerText = parentElement.firstChild.firstChild
+        bodyText = parentElement.childNodes[2].firstChild
+        reWriteBtn = e.target.parentNode.parentNode.parentNode.parentNode.lastChild.firstChild.firstChild
+
+        
+
+        const editBtn  = elementMaker('a', 'icon-btn editBtn')
+        editBtn.innerHTML = `<span class="material-icons">edit</span>`
+
+        const headerTextElement = elementMaker('h5', '')
+        headerTextElement.appendChild(document.createTextNode(headerText.value))
+        const bodyTextElement = elementMaker('p', 'lead fix-size')
+        bodyTextElement.setAttribute('gramm_editor', 'false')
+        bodyTextElement.appendChild(document.createTextNode(bodyText.value))
+
+        headerText.parentNode.replaceChild(headerTextElement, headerText)
+        bodyText.parentNode.replaceChild(bodyTextElement, bodyText)
+        reWriteBtn.parentNode.replaceChild(editBtn, reWriteBtn)
+        
+    }
+    
+    
 }
 
 
