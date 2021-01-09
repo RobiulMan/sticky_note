@@ -39,6 +39,9 @@ function loadEventListners() {
 
     // rewrightin event 
     noteArea.addEventListener('click', reWriteAction)
+
+    //search event 
+    search.addEventListener('keyup', searchingAction)
     
 /**
 * @color future i will implamentrion the color area
@@ -182,7 +185,8 @@ function addContent(e) {
     e.preventDefault()
 }
 
-// 
+
+
 function storeDataFromLocalStoreage(title, bodyText) {
     let data;
     if(localStorage.getItem('data') === null) {
@@ -313,6 +317,23 @@ function reWriteAction(e) {
     }
     
     
+}
+
+//searching event
+function searchingAction(e) {
+    const text = e.target.value.toLowerCase()
+    // cosnt pareantElement =  document.querySelectorAll('h5')
+    const [skip, ...cardItem]= document.querySelectorAll('.modal-root')
+    console.log(cardItem[0].firstChild.firstChild.firstChild.firstChild)
+    cardItem.forEach(function(items) {
+        const item = items.firstChild.firstChild.firstChild.firstChild
+        console.log(item)
+        if(item.textContent.toLowerCase().indexOf(text) != -1) {
+            items.style.display = 'block'
+        }else{
+            items.style.display = 'none'
+        }
+    })
 }
 
 
