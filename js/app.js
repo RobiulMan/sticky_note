@@ -53,7 +53,7 @@ function loadEventListners() {
     // plates.forEach(item => item.addEventListener('click', colorSelectore))
 }
 
-// get card from LS
+//get card from LS
 function getCard() {
     let data;
     if(localStorage.getItem('data') === null) {
@@ -114,9 +114,10 @@ function getCard() {
 
     })
 }
-//add sticky note content
+
+//sticky note event
 function addContent(e) {
-    //check input filed
+    //check input filed 
     if(noteTitle.value === '') {
         alert('add something')
         return false
@@ -202,14 +203,45 @@ function storeDataFromLocalStoreage(title, bodyText) {
 //delete card event
 function deleteAction(e) {
     let pareantElement = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
-    console.log(pareantElement)
-    if(e.target.parentNode.classList.contains('removeBtn') && confirm('Are You Sure?')) {
+
+    //delet alert function
+    const deletFunction = deleteAlert()
+    deletFunction.style.display = 'block';
+
+    if(e.target.parentNode.classList.contains('removeBtn')) {
+
+        document.body.appendChild(deletFunction)
         
-        pareantElement.remove('modal-root')
+        const asscessdeletFunProp = deletFunction.firstChild.firstChild.firstChild.lastElementChild.childNodes
+        document.body.firstElementChild.style.filter = 'blur(8px)';
         
-        //remove from LS
-        removeCardFromLocalStoreage(pareantElement)
+        
+       //delet alert delete btn event
+        asscessdeletFunProp[1].addEventListener('click', (e) => {
+            pareantElement.remove('modal-root')
+            removeCardFromLocalStoreage(pareantElement)
+            
+            //remove from LS
+            deletFunction.remove()
+            document.body.firstElementChild.removeAttribute('style')
+            
+            e.preventDefault()
+        })
+
+       //delet alert cancle btn event
+        asscessdeletFunProp[0].addEventListener('click', (e) => {
+            deletFunction.remove()
+            document.body.firstElementChild.removeAttribute('style')
+            e.preventDefault()
+        })
+       
+        
+       
+        
+        console.log(deletFunction)
+        
     }
+    e.preventDefault()
 }
 
 //remove from LS
@@ -225,11 +257,9 @@ function removeCardFromLocalStoreage(cardItem) {
     }
     
     data.forEach(function(item, index) {
-        
-        if(cartItemsTite === item[0]) {
-            data.splice(index, 1)
-        }
+        if(cartItemsTite === item[0]) { data.splice(index, 1) }
     })
+
     localStorage.setItem('data', JSON.stringify(data))
     
 }
@@ -267,6 +297,7 @@ function editAction(e) {
         
         
     }
+    e.preventDefault()
 }
 
 function reWriteAction(e) {
@@ -315,7 +346,7 @@ function reWriteAction(e) {
         localStorage.setItem('data', JSON.stringify(data))
         
     }
-    
+    e.preventDefault()
     
 }
 
@@ -323,18 +354,17 @@ function reWriteAction(e) {
 function searchingAction(e) {
     const text = e.target.value.toLowerCase()
 
-    
     const [skip, ...cardItem]= document.querySelectorAll('.modal-root')
-    
+
     cardItem.forEach(function(items) {
         const item = items.firstChild.firstChild.firstChild.firstChild
-        
         if(item.textContent.toLowerCase().indexOf(text) != -1) {
             items.style.display = 'block'
         }else{
             items.style.display = 'none'
         }
     })
+    e.preventDefault()
 }
 
 
@@ -393,3 +423,63 @@ function elementMaker(tagName, nameOfClass) {
 
     return element
 }
+
+function deleteAlert() {
+    const root = elementMaker('div', 'alert-box')
+    const deletAlertBox = elementMaker('div', 'col-6 d-flex justify-content-center')
+    const deletbox = elementMaker('div', 'alerts position-absolute p-5 bg-light top-50 start-50 translate-middle')
+    
+    const deletContent = elementMaker('div', 'alert-content')
+    const deletHeader = elementMaker('div', 'alert-header')
+    // const modalHeader = elementMaker('div', 'modal-header')
+    const headerText = elementMaker('p', 'h5')
+    headerText.innerText = 'are you sure?'
+    deletHeader.appendChild(headerText)
+
+    const deletAlertBody = elementMaker('div', 'alert-body') 
+    const deletAlertBodyText = elementMaker('p','lead')
+    deletAlertBodyText.innerText = 'do you want delete item'
+    deletAlertBody.appendChild(deletAlertBodyText)
+    
+    const deletAlertBtn = elementMaker('div', 'd-flex justify-content-center')
+    const btnCancle = elementMaker('button', 'cancle')
+    btnCancle.innerText = 'Cancle'
+    const btnDelete = elementMaker('button', 'delete')
+    btnDelete.innerText = 'Delete'
+
+    deletAlertBtn.appendChild(btnCancle)
+    deletAlertBtn.appendChild(btnDelete)
+
+    deletContent.appendChild(deletHeader)
+    deletContent.appendChild(deletAlertBody)
+    deletContent.appendChild(deletAlertBtn)
+    deletbox.appendChild(deletContent)
+    deletAlertBox.appendChild(deletbox)
+    root.appendChild(deletAlertBox)
+    
+    return root
+    
+//     <div class="alert-box">
+//     <div class="col-6 d-flex justify-content-center">
+//       <div class="position-absolute p-5 bg-light top-50 start-50 translate-middle">
+//         <div class="alert-content">
+//           <div class="alert-header ">
+//             <p class="h5">are you suere?</p>
+//           </div>
+//           <div class="alert-body mt-3 mb-3">
+//             <p>do you want delete item </p>
+//           </div>
+//           <div class="d-flex justify-content-center">
+//             <button class="cancle">Cancle</button>
+//             <button class="delete">Delete</button>
+//           </div>
+//         </div>
+//       </div>
+
+//     </div>
+//   </div>
+    
+}
+// const deletA = deleteAlert()
+// deletA.style.display = 'block';
+// console.log(document.body.appendChild(deletA))

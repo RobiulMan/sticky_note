@@ -1,11 +1,15 @@
 body{
+    font-family: 'Montserrat', sans-serif !important;
+    background-color: #eab100;
+}
+.full-width{
     background: url(../image/background.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     height: 100vh;
-    font-family: 'Montserrat', sans-serif !important;
-    background-color: #eab100;
+    
+    /* background-color: #eab100; */
 }
 .hearder{
     margin-bottom: 180px;
@@ -148,4 +152,78 @@ textarea{
 }
 .un-selector{
     border: none
+}
+
+
+/* dedelet-alert-box */
+.alert-box{
+    display: none;
+    /* filter: blur(8px); */
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    width: 100%; 
+    height: 100%;
+    /* position-relative */
+    box-sizing: border-box; 
+    /* background-color:rgba(0, 0, 0, 0.2); */
+    
+    
+}
+
+
+.delet-alert-box{
+    /* display: none; */
+}
+.delet-alert-box > .active-color{
+    /* display: block; */
+}
+/* 
+.alert-content{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(50px, 50px);
+    box-sizing: border-box;
+    height: 30%;
+    width: 30%;
+    background-color: rgb(211, 211, 211);
+    padding: 30px;
+    text-align: center;
+    
+}  */
+.alerts {
+    box-shadow: 1px 0px 25px 0px rgb(0, 0, 0, .5);
+    /* border: 1px solid rgb(0, 0, 0, .5); */
+    
+}
+
+
+.cancle{
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #777;
+    border-radius: 0px;
+    border: none;
+    color: #fff;
+}
+.delete{
+    padding: 10px 20px;
+    background-color: rgb(255, 87, 87);
+    border-radius: 0px;
+    border: none;
+    color: #fff;
+}
+.alert-header{
+    margin-bottom: 20px;
+}
+.alert-body{
+    margin-bottom: 20px;
+}
+.active{
+    /* display: block; */
+}
+button:focus {
+    outline: none; 
+    outline: -webkit-focus-ring-color auto 0px;
 }
